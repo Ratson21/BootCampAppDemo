@@ -23,41 +23,52 @@
             android:text="Register" />
 
         <EditText
+            android:id="@+id/input_username"
             android:layout_width="274dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:hint="User Name"
-            android:inputType="text"
-            android:layout_marginBottom="5dp" />
+            android:inputType="text" />
+
         <EditText
+            android:id="@+id/input_username"
             android:layout_width="274dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:hint="First Name"
-            android:inputType="text"
-            android:layout_marginBottom="10dp"/>
+            android:inputType="text" />
+
         <EditText
+            android:id="@+id/input_lastname"
             android:layout_width="274dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:hint="Last Name"
-            android:inputType="text"
-            android:layout_marginBottom="10dp"/>
+            android:inputType="text" />
+
         <EditText
+            android:id="@+id/input_email"
             android:layout_width="274dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:layout_marginBottom="10dp"/>
+            android:inputType="textEmailAddress" />
+
         <EditText
+            android:id="@+id/input_password"
             android:layout_width="274dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:hint="Password"
-            android:inputType="textPassword"
-            android:layout_marginBottom="10dp"/>
+            android:inputType="textPassword" />
+
         <EditText
+            android:id="@+id/input_retype_password"
             android:layout_width="274dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:hint="Retype Password"
-            android:inputType="textPassword"
-            android:layout_marginBottom="20dp"/>
+            android:inputType="textPassword" />
 
         <Button
             android:layout_width="wrap_content"
