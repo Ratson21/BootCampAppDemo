@@ -57,8 +57,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initView() {
 
-        inputUserName = findViewById(R.id.input_username);
-        inputPassword = findViewById(R.id.input_password);
+        inputUserName = findViewById(R.id.input_usernameLogin);
+        inputPassword = findViewById(R.id.input_passwordLogin);
         btnLogin = findViewById(R.id.btn_login);
         btnRegister = findViewById(R.id.btnDaftar);
 
@@ -70,7 +70,15 @@ public class LoginActivity extends AppCompatActivity {
                 userName = inputUserName.getText().toString();
                 password = inputPassword.getText().toString();
                 Login login = new Login(userName, password);
-                sendLogin(login);
+
+                if (userName.equals("")){
+                    Toast.makeText(LoginActivity.this, "username tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                }else if(password.equals("")){
+                    Toast.makeText(LoginActivity.this, "password tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                }else{
+                    sendLogin(login);
+                }
+
 
                 Log.i(TAG, "isi username : " + userName);
                 Log.i(TAG, "isi password : " + password);

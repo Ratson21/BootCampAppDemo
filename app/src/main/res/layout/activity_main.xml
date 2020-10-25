@@ -18,7 +18,7 @@
             android:text="Login" />
 
         <EditText
-            android:id="@+id/input_username"
+            android:id="@+id/input_usernameLogin"
             android:layout_width="274dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -26,7 +26,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/input_password"
+            android:id="@+id/input_passwordLogin"
             android:layout_width="274dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
