@@ -3,36 +3,20 @@ package com.example.test_android.model;
 public class Register {
     private String username;
     private String password;
-    private String lastname;
-    private String firstname;
+    private String lastName;
+    private String firstName;
     private String email;
     private String retypePassword;
 
     public Register() {
     }
 
-    public Register(String username, String password, String lastname, String firstname, String email, String retypePassword) {
+    public Register(String username, String password, String lastName, String firstName, String email, String retypePassword) {
         this.username = username;
         this.password = password;
-        this.lastname = lastname;
-        this.firstname = firstname;
+        this.lastName = lastName;
+        this.firstName = firstName;
         this.email = email;
-        this.retypePassword = retypePassword;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getRetypePassword() {
-        return retypePassword;
-    }
-
-    public void setRetypePassword(String retypePassword) {
         this.retypePassword = retypePassword;
     }
 
@@ -52,12 +36,20 @@ public class Register {
         this.password = password;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getEmail() {
@@ -66,5 +58,13 @@ public class Register {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRetypePassword() {
+        return retypePassword;
+    }
+
+    public void setRetypePassword(String retypePassword) {
+        this.retypePassword = retypePassword;
     }
 }
