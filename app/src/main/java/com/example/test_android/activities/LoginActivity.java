@@ -1,7 +1,9 @@
 package com.example.test_android.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,11 +13,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.test_android.Interface.AppService;
 import com.example.test_android.Interface.UserApiService;
+import com.example.test_android.Interface.UserImageService;
 import com.example.test_android.R;
 import com.example.test_android.model.ApiResult;
 import com.example.test_android.model.Login;
+import com.example.test_android.model.User;
+import com.example.test_android.model.UserImage;
 import com.example.test_android.utilities.Cons;
+import com.google.gson.Gson;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Response;
@@ -37,11 +44,12 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         initView();
         initRetrofit();
 
         TextView daftar = (TextView) findViewById(R.id.btnDaftar);
+
         daftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +60,20 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    public void onBackPressed() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity. this);
+        builder.setMessage("Yakin untuk keluar?");
+        builder.setPositiveButton("Ya",(dialog, which) -> {finish();});
+        builder.setCancelable(true);
+        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        AlertDialog alertDialog= builder.create();
+        alertDialog.show();
     }
 
 
@@ -116,7 +138,11 @@ public class LoginActivity extends AppCompatActivity {
                 ApiResult apiResponse = response.body();
                 boolean success = apiResponse.isSuccess();
                 if (success) {
+                    Gson gson = new Gson();
                     Toast.makeText(LoginActivity.this, "Selamat Datang", Toast.LENGTH_SHORT).show();
+                    User userResult = gson.fromJson(gson.toJson(apiResponse.getData()), User.class);
+                    AppService.setToken("Bearer " +apiResponse.getToken());
+                    AppService.setUser(userResult);
                   toMainActivity();
 
                 } else {
@@ -131,6 +157,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
 
 
     private void toMainActivity() {

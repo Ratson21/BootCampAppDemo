@@ -1,7 +1,9 @@
 package com.example.test_android.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,6 +56,20 @@ public class DaftarActivity extends AppCompatActivity {
                     "[a-zA-Z0-9][a-zA-Z0-9-]{0,25}" +
                     ")+"
     );
+
+    public void onBackPressed() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(DaftarActivity. this);
+        builder.setMessage("Yakin untuk keluar?");
+        builder.setCancelable(true);
+        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        builder.setPositiveButton("Ya",(dialog, which) -> {finish();});
+        AlertDialog alertDialog= builder.create();
+        alertDialog.show();
+    }
     private void initView(){
 
         inputUsername = findViewById(R.id.input_username);

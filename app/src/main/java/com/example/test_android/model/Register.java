@@ -67,4 +67,16 @@ public class Register {
     public void setRetypePassword(String retypePassword) {
         this.retypePassword = retypePassword;
     }
+
+    @Override
+    public String toString() {
+        return "Register{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", email='" + email + '\'' +
+                ", retypePassword='" + retypePassword + '\'' +
+                '}';
+    }
 }
