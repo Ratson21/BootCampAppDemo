@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 
 import com.example.test_android.Interface.AppService;
@@ -28,6 +30,8 @@ import com.example.test_android.model.ApiResult;
 import com.example.test_android.model.User;
 import com.example.test_android.model.UserImage;
 import com.example.test_android.utilities.Cons;
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
@@ -58,6 +62,7 @@ public class SettingActivity extends AppCompatActivity {
     private String base64Image;
     private Long user_id;
     private String avatar;
+
     private Retrofit retrofit;
 //    ImageView imgAvatar;
 
@@ -65,12 +70,37 @@ public class SettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
-        initView();
-        initRetrofit();
-        getImage();
+        setContentView(R.layout.activity_setting);;
 
-    }
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
+        TabItem tabImage = findViewById(R.id.tab_image);
+        TabItem tabAddress = findViewById(R.id.tab_address);
+        ViewPager viewPager = findViewById(R.id.viewPager);
+
+        PagerAdapter pagerAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(pagerAdapter);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+//                initView();
+//        initRetrofit();
+//        getImage();
+
+        }
 
 
 
