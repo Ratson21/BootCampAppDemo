@@ -24,6 +24,7 @@ import com.example.test_android.model.ApiResult;
 import com.example.test_android.model.User;
 import com.example.test_android.model.UserImage;
 import com.example.test_android.utilities.Cons;
+import com.example.test_android.utilities.RetrofitUtility;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -75,9 +76,9 @@ public class userImageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_user_image_freagment, container, false);
-
+//
         initView();
-       initRetrofit();
+        initRetrofit();
 
         getAvatar();
 
@@ -85,6 +86,9 @@ public class userImageFragment extends Fragment {
     }
 
     private void initView() {
+
+//        retrofit = RetrofitUtility.initializeRetrofit();
+
         fileButton = view.findViewById(R.id.btnChooseImage);
         saveButton = view.findViewById(R.id.btnSave);
         updateButton = view.findViewById(R.id.btnUpdate);
