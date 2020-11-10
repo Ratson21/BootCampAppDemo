@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -17,12 +19,15 @@ import com.example.test_android.Interface.AppService;
 import com.example.test_android.Interface.DistrictApiService;
 import com.example.test_android.Interface.ProvincesApiService;
 import com.example.test_android.Interface.RegenciesApiService;
+import com.example.test_android.Interface.UserAddressApiService;
 import com.example.test_android.Interface.VillageApiService;
 import com.example.test_android.R;
 import com.example.test_android.model.ApiResult;
 import com.example.test_android.model.District;
 import com.example.test_android.model.Province;
 import com.example.test_android.model.Regencie;
+import com.example.test_android.model.User;
+import com.example.test_android.model.UserAddress;
 import com.example.test_android.model.Village;
 import com.example.test_android.utilities.Cons;
 import com.example.test_android.utilities.RetrofitUtility;
@@ -46,13 +51,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Use the  factory method to
  * create an instance of this fragment.
  */
-public class userAddressFragment extends Fragment {
+public class UserAddressFragment extends Fragment {
 
 
     private String TAG = "userAddressFragment";
     private View view;
-    private Spinner spinnerProvince, spinnerRegencie, spinnerDistrict,spinnerVillage;;
+    private String user_id, address, pos_code;
+    private Integer province_id, regencie_id, district_id, village_id;
+    private Spinner spinnerProvince, spinnerRegencie, spinnerDistrict,spinnerVillage;
+    private EditText txtUserAddress, txtPostalCode;
+    private Button sendbutton;
     private Retrofit retrofit;
+    int provinceId, regencyId, districtId, villageId;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,9 +84,79 @@ public class userAddressFragment extends Fragment {
         spinnerRegencie = view.findViewById(R.id.spin_regencie);
         spinnerDistrict = view.findViewById(R.id.spin_district);
         spinnerVillage = view.findViewById(R.id.spin_villages);
+        txtUserAddress = view.findViewById(R.id.txtAddress);
+        txtPostalCode = view.findViewById(R.id.txtPostalCode);
+        sendbutton = view.findViewById(R.id.sendButton);
 
         getProvinces();
+
+        sendbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "onClick: button save ditekan");
+                user_id = AppService.getUser().getId().toString();
+            address = txtUserAddress.getText().toString();
+            province_id = Integer.valueOf(provinceId);
+            regencie_id = Integer.valueOf(regencyId);
+            district_id = Integer.valueOf(districtId);
+            village_id = Integer.valueOf(villageId);
+            pos_code = txtPostalCode.getText().toString();
+                UserAddress userAddress = new UserAddress(user_id, address, province_id, regencie_id,district_id, village_id, pos_code);
+
+                if (address.equals("")){
+                    Toast.makeText(getContext(), "Address tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                }else if(pos_code.equals("")){
+                    Toast.makeText(getContext(), "Postal Code tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                }else if(pos_code.trim().length() < 5){
+                    Toast.makeText(getContext(), "Postal Code harus 5 angka", Toast.LENGTH_SHORT).show();
+                }else if (Integer.valueOf(provinceId).equals("")){
+                    Toast.makeText(getContext(), " provinsi harus dipilih", Toast.LENGTH_SHORT).show();
+                }else if (String.valueOf(regencyId).equals("")){
+                    Toast.makeText(getContext(), "regensi harus dipilih", Toast.LENGTH_SHORT).show();
+                }else if (String.valueOf(districtId).equals("")){
+                    Toast.makeText(getContext(), "district harus dipilih", Toast.LENGTH_SHORT).show();
+                }else if (String.valueOf(villageId).equals("")){
+                    Toast.makeText(getContext(), "village harus dipilih", Toast.LENGTH_SHORT).show();
+                }else{
+                    sendUserAddress(userAddress);
+                }
+
+                Log.i(TAG, "isi address " + address);
+                Log.i(TAG, " isi pos_code " + pos_code);
+                Log.i(TAG, "onClick: isi spinnerProvince " + spinnerProvince);
+                Log.i(TAG, "onClick: isi spinnerRegencie " + spinnerRegencie);
+                Log.i(TAG, "onClick: isi spinnerDistrict " + spinnerDistrict);
+                Log.i(TAG, "onClick: isi spinnerVillage " + spinnerVillage);
+            }
+        });
     }
+
+    private void sendUserAddress(UserAddress userAddressBody){
+        UserAddressApiService userAddressApiService = retrofit.create(UserAddressApiService.class);
+        Call<ApiResult> result = userAddressApiService.insertUserAddress(AppService.getToken(), userAddressBody);
+
+        result.enqueue(new Callback<ApiResult>() {
+            @Override
+            public void onResponse(Call<ApiResult> call, Response<ApiResult> response) {
+                Log.e(TAG, "onResponse: " + response.body() );
+                ApiResult apiResult = response.body();
+                boolean success = apiResult.isSuccess();
+                if (success){
+                    Toast.makeText(getContext(), "Berhasil input", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getContext(), apiResult.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ApiResult> call, Throwable t) {
+                Toast.makeText(getContext(), "error" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 
     private void getProvinces() {
 
@@ -220,7 +301,7 @@ public class userAddressFragment extends Fragment {
                     Log.e(TAG, "pilihan selain itu ");
                     Log.e(TAG, "onItemSelected: " + provinceList.get(Integer.parseInt(selectedId)).getId());
 
-                    int provinceId = provinceList.get(Integer.parseInt(selectedId)).getId();
+                    provinceId = provinceList.get(Integer.parseInt(selectedId)).getId();
 
                     getRegencie(provinceId);
                 }
@@ -270,7 +351,7 @@ public class userAddressFragment extends Fragment {
                 } else {
                     Log.e(TAG, "pilihan selain itu ");
 
-                    int regencyId = regencieList.get(Integer.parseInt(selectedId)).getId();
+                    regencyId = regencieList.get(Integer.parseInt(selectedId)).getId();
 
                     Log.e(TAG, "onItemSelected: " + regencyId);
 
@@ -321,7 +402,7 @@ public class userAddressFragment extends Fragment {
                     Log.e(TAG, "onItemSelected: " + null);
                 } else {
                     Log.e(TAG, "pilihan selain itu ");
-                    int districtId = districtList.get(Integer.parseInt(selectedId)).getId();
+                    districtId = districtList.get(Integer.parseInt(selectedId)).getId();
                     Log.e(TAG, "onItemSelected: " + districtId);
                     getVillages(districtId);
                 }
@@ -369,7 +450,7 @@ public class userAddressFragment extends Fragment {
                     Log.e(TAG, "onItemSelected: " + null);
                 } else {
                     Log.e(TAG, "pilihan selain itu ");
-                    int districtId = villagesList.get(Integer.parseInt(selectedId)).getId();
+                    villageId = villagesList.get(Integer.parseInt(selectedId)).getId();
                     Log.e(TAG, "onItemSelected: " + districtId);
                 }
             }

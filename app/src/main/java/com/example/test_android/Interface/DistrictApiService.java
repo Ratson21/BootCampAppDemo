@@ -12,5 +12,8 @@ public interface DistrictApiService {
     @GET("api/districts/getByRegenciesId")
     Call<ApiResult> getAllRegencyId(@Header("Authorization") String token, @Query("regenciesId") int regencyId);
 
+    @GET("api/districts/getByDistrictsId")
+    Call<ApiResult> getByDistrictsId(@Header("Authorization") String token, @Query("Id") Integer id);
+
 }
 

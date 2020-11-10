@@ -11,4 +11,7 @@ public interface VillageApiService {
     @GET("api/villages/getByDistrictId")
     Call<ApiResult> getAllVillageId(@Header("Authorization") String token, @Query("districtId") int districtId);
 
+    @GET("api/villages/getByVillageId")
+    Call<ApiResult> getByVillageId(@Header("Authorization") String token, @Query("Id") Integer id);
+
 }

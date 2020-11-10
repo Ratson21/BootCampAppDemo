@@ -11,4 +11,7 @@ public interface RegenciesApiService {
     @GET("api/regencies/getByProvinceId")
     Call<ApiResult> getRegencieByProvinceId(@Header("Authorization") String token, @Query("provinceId") int provinceId);
 
+    @GET("api/regencies/getByRegenciesId")
+    Call<ApiResult> getByRegenciesId(@Header("Authorization") String token, @Query("Id") Integer id);
+
 }

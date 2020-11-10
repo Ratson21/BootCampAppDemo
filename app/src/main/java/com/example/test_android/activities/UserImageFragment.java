@@ -46,7 +46,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Use the  factory method to
  * create an instance of this fragment.
  */
-public class userImageFragment extends Fragment {
+public class UserImageFragment extends Fragment {
 
     public static final int PICK_IMAGE = 1;
     private String TAG = "UserImageFragment";

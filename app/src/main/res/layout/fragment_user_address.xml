@@ -1,173 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.userAddressFragment">
+    tools:context=".activities.UserAddressFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        android:elevation="10dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical"
-            android:padding="20dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="Provinces"
-                android:textColor="@color/red_400"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/spinner_border"
-                tools:ignore="UselessParent">
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:elevation="10dp">
 
-
-                <Spinner
-                    android:id="@+id/spin_provinces"
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:backgroundTint="@color/grey_800"
-                    android:overlapAnchor="false"
-                    android:spinnerMode="dropdown" />
+                    android:layout_height="match_parent">
 
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="Regencie"
-                android:textColor="@color/red_400"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/spinner_border"
-                tools:ignore="UselessParent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
 
-                <Spinner
-                    android:id="@+id/spin_regencie"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:backgroundTint="@color/grey_800"
-                    android:overlapAnchor="false"
-                    android:spinnerMode="dropdown" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="20dp"
+                            android:orientation="vertical"
+                            android:padding="20dp">
 
-            </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="Address"
+                                android:textColor="@color/red_400"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:text="District"
-                android:textColor="@color/red_400"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/spinner_border"
-                tools:ignore="UselessParent">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/spinner_border"
+                                tools:ignore="UselessParent">
 
 
-                <Spinner
-                    android:id="@+id/spin_district"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:backgroundTint="@color/grey_800"
-                    android:overlapAnchor="false"
-                    android:spinnerMode="dropdown" />
+                                <EditText
+                                    android:id="@+id/txtAddress"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:backgroundTint="@color/grey_800" />
 
-            </LinearLayout>
+                            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="Village"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/red_400"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="Postal Code"
+                                android:textColor="@color/red_400"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/spinner_border"
-                tools:ignore="UselessParent">
-
-                <Spinner
-                    android:id="@+id/spin_villages"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:backgroundTint="@color/grey_800"
-                    android:overlapAnchor="false"
-                    android:spinnerMode="dropdown" />
-
-            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:background="@drawable/spinner_border"
+                                tools:ignore="UselessParent">
 
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/sendButton"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="20dp"
-                android:elevation="40dp"
-                android:text="Save"
-                android:visibility="gone"
-                app:backgroundTint="@color/blue_800"
-                app:icon="@drawable/ic_save"
-                app:iconGravity="textStart"
-                app:iconPadding="10dp" />
+                                <EditText
+                                    android:id="@+id/txtPostalCode"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:backgroundTint="@color/grey_800"
+                                    android:inputType="number"
+                                    android:maxLength="5" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/updateButton"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="20dp"
-                android:elevation="40dp"
-                android:text="Update"
-                android:visibility="gone"
-                app:backgroundTint="@color/blue_800"
-                app:icon="@drawable/ic_save"
-                app:iconGravity="textStart"
-                app:iconPadding="10dp" />
+                            </LinearLayout>
 
-        </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="Provinces"
+                                android:textColor="@color/red_400"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:background="@drawable/spinner_border"
+                                tools:ignore="UselessParent">
 
 
-    </com.google.android.material.card.MaterialCardView>
+                                <Spinner
+                                    android:id="@+id/spin_provinces"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:backgroundTint="@color/grey_800"
+                                    android:overlapAnchor="false"
+                                    android:spinnerMode="dropdown" />
 
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="Regencie"
+                                android:textColor="@color/red_400"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:background="@drawable/spinner_border"
+                                tools:ignore="UselessParent">
+
+
+                                <Spinner
+                                    android:id="@+id/spin_regencie"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:backgroundTint="@color/grey_800"
+                                    android:overlapAnchor="false"
+                                    android:spinnerMode="dropdown" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="District"
+                                android:textColor="@color/red_400"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:background="@drawable/spinner_border"
+                                tools:ignore="UselessParent">
+
+
+                                <Spinner
+                                    android:id="@+id/spin_district"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:backgroundTint="@color/grey_800"
+                                    android:overlapAnchor="false"
+                                    android:spinnerMode="dropdown" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="Village"
+                                android:textColor="@color/red_400"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:background="@drawable/spinner_border"
+                                tools:ignore="UselessParent">
+
+                                <Spinner
+                                    android:id="@+id/spin_villages"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:backgroundTint="@color/grey_800"
+                                    android:overlapAnchor="false"
+                                    android:spinnerMode="dropdown" />
+
+                            </LinearLayout>
+
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/sendButton"
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="20dp"
+                                android:elevation="40dp"
+                                android:text="Save"
+                                app:backgroundTint="@color/blue_800"
+                                app:icon="@drawable/ic_save"
+                                app:iconGravity="textStart"
+                                app:iconPadding="10dp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/updateButton"
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="20dp"
+                                android:elevation="40dp"
+                                android:text="Update"
+                                android:visibility="gone"
+                                app:backgroundTint="@color/blue_800"
+                                app:icon="@drawable/ic_save"
+                                app:iconGravity="textStart"
+                                app:iconPadding="10dp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
+
+
+            </com.google.android.material.card.MaterialCardView>
 
 
 </FrameLayout>
