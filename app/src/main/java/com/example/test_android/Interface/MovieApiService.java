@@ -12,6 +12,6 @@ public interface MovieApiService {
     Call<ApiResult> getAllMovie(@Header("Authorization") String token);
 
     @GET("api/movie/getById")
-    Call<ApiResult> getMovieById(@Header("Authorization") String token, @Query("id") String id);
+    Call<ApiResult> getMovieById(@Header("Authorization") String token, @Query("id") long id);
 
 }

@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test_android"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activities.MovieDetailActivity"></activity>
         <activity android:name=".activities.SettingActivity" />
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.DaftarActivity" />

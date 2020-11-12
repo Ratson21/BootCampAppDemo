@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +16,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.test_android.Interface.AppService;
 import com.example.test_android.R;
+import com.example.test_android.activities.MainActivity;
+import com.example.test_android.activities.MovieDetailActivity;
+import com.example.test_android.activities.SettingActivity;
 import com.example.test_android.model.Movie;
 
 import java.util.ArrayList;
@@ -24,6 +29,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     private String TAG = "MovieAdapter";
     private ArrayList<Movie> dataList;
+
 
     public MovieAdapter(ArrayList<Movie> dataList) {
         this.dataList = dataList;
@@ -34,6 +40,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.list_item, parent, false);
         return new MovieAdapter.MovieViewHolder(view);
+
     }
 
     @Override
@@ -42,6 +49,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         holder.txtRating.setText(dataList.get(position).getRating());
         holder.txtSinopsis.setText(dataList.get(position).getSinopsis());
         holder.imagePoster.setImageBitmap(convertToBitmap(dataList.get(position).getImage()));
+        holder.btnDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long movieId = dataList.get(position).getId();
+                Intent i = new Intent(v.getContext(), MovieDetailActivity.class);
+                i.putExtra("movieId", movieId);
+                v.getContext().startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -53,6 +69,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     public class MovieViewHolder extends RecyclerView.ViewHolder {
         private TextView txtJudul, txtRating, txtSinopsis;
         private ImageView imagePoster;
+        private Button btnDetail;
 
         public MovieViewHolder(View itemView) {
             super(itemView);
@@ -60,6 +77,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             txtRating = itemView.findViewById(R.id.txt_rating);
             txtSinopsis = itemView.findViewById(R.id.txt_sinopsis);
             imagePoster = itemView.findViewById(R.id.image_poster);
+            btnDetail= itemView.findViewById(R.id.btn_detail);
+
+
         }
     }
 
